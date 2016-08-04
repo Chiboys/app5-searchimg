@@ -7,7 +7,7 @@ module.exports = function(db){
 		var start = page * 10
 		https://www.googleapis.com/customsearch/v1?key=INSERT_YOUR_API_KEY&cx=017576662512468239146:omuauf_lfve&q=lectures
 		var url = "https://www.googleapis.com/customsearch/v1?"+
-				"key=AIzaSyAFlWrGj3osy579q8TSIoJOEKrvPAg6kDU"+
+				"key="+process.env.gkey+
 				"&cx=008242466204929014890:t-whiqdldt4"+	
 				"&start = "+ start +
 				"&num="+10+
