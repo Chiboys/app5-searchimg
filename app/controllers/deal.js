@@ -11,9 +11,8 @@ module.exports = function(db){
 				"&cx=008242466204929014890:z4ee1niuwii"+	
 				"&start = "+ start +
 				"&num="+10+
-				"&q="+query+
-				"&searchtype=image";
-		console.log(url);
+				"&q="+query;
+		//console.log(url);
 		var origUrl = req.get("host")+req.originalUrl;
 		collect.insert({url:origUrl},function(err){
 			if(err) {throw err};
