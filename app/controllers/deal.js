@@ -3,15 +3,14 @@ module.exports = function(db){
 	var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 	this.query = function(req,res){
 		var query = req.params.q;
-		var page = parseInt(req.query.offset) - 1;//返回什么，我需要考虑为空或者其他的情况吗
+		var page = 0;
+		if(req.query.offset){
+			if(parseInt(req.query.offset) >= 1){
+				page  = parseInt(req.query.offset)-1 ;
+			}
+		}
 		var start = page * 10;
-		var url = "https://www.googleapis.com/customsearch/v1?"+
-				"key="+process.env.gkey+
-				"&cx=008242466204929014890:z4ee1niuwii"+	
-//				"&start = "+ start +
-//				"&num="+10+
-				"&q="+query;
-		//console.log(url);
+		var url = "https://api.cognitive.microsoft.com/bing/v5.0/images/search?q="+query+"&offset="+start+"&count=20&mkt=en-us";
 		var origUrl = req.get("host")+req.originalUrl;
 		collect.insert({url:origUrl},function(err){
 			if(err) {throw err};
@@ -19,11 +18,26 @@ module.exports = function(db){
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function () {
          if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-            res.json(xmlhttp.response);
+			if(xmlhttp.responseText){
+				var data = JSON.parse(xmlhttp.responseText).value;
+				var simplify = data.map(function(ele){
+				var obj = {
+				"name":ele.name,
+				"thumbnailUrl":ele.thumbnailUrl,
+				"contentUrl":ele.contentUrl,
+				"pageUrl":ele.hostPageUrl
+				};
+				return obj;
+			});	
+				res.send(simplify);
+			}else{
+				res.end("the page dosen't exit");
+			}
+			
          }
       };
-
 		xmlhttp.open("GET",url,true);
+		xmlhttp.setRequestHeader("Ocp-Apim-Subscription-Key",process.env.bkey);
 		xmlhttp.send();
 	}
 	this.latestQuery = function(req,res){
@@ -33,5 +47,4 @@ module.exports = function(db){
 			res.send(docs.slice(length - 20,length -1));
 		});
 	}
-
 }
