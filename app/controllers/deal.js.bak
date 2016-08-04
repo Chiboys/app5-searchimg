@@ -19,7 +19,7 @@ module.exports = function(db){
 		});
 		var xmlhttp = new XMLHttpRequest();
 		//if(xmlhttp.status !== 200){
-			res.end(JSON.stringify(xmlhttp));			
+			res.end(JSON.stringify(xmlhttp.response));			
 		//}else{
 		//	res.end("NO result Or something .\nstatus:"+xmlhttp.status);
 		//}
