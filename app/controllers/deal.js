@@ -4,8 +4,7 @@ module.exports = function(db){
 	this.query = function(req,res){
 		var query = req.params.q;
 		var page = parseInt(req.query.offset) - 1;//返回什么，我需要考虑为空或者其他的情况吗
-		var start = page * 10
-		https://www.googleapis.com/customsearch/v1?key=INSERT_YOUR_API_KEY&cx=017576662512468239146:omuauf_lfve&q=lectures
+		var start = page * 10;
 		var url = "https://www.googleapis.com/customsearch/v1?"+
 				"key="+process.env.gkey+
 				"&cx=008242466204929014890:z4ee1niuwii"+	
