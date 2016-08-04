@@ -18,11 +18,11 @@ module.exports = function(db){
 			if(err) {throw err};
 		});
 		var xmlhttp = new XMLHttpRequest();
-		//if(xmlhttp.status !== 200){
-			res.json(xmlhttp.response);			
-		//}else{
-		//	res.end("NO result Or something .\nstatus:"+xmlhttp.status);
-		//}
+		xmlhttp.onreadystatechange = function () {
+         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            res(xmlhttp.response);
+         }
+      };
 
 		xmlhttp.open("GET",url,true);
 		xmlhttp.send();
