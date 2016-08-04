@@ -1,0 +1,24 @@
+{
+  "name": "app5-serachimg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WangLiuLiuWang/app5-searchimg.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WangLiuLiuWang/app5-searchimg/issues"
+  },
+  "homepage": "https://github.com/WangLiuLiuWang/app5-searchimg#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongodb": "^2.2.5",
+    "xmlhttprequest": "^1.8.0"
+  }
+}
