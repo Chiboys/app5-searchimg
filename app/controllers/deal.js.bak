@@ -12,7 +12,7 @@ module.exports = function(db){
 				"&start = "+ start +
 				"&num="+10+
 				"&q="+query;
-		console.log(url);
+		//console.log(url);
 		var origUrl = req.get("host")+req.originalUrl;
 		collect.insert({url:origUrl},function(err){
 			if(err) {throw err};
