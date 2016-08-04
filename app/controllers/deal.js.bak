@@ -9,8 +9,8 @@ module.exports = function(db){
 		var url = "https://www.googleapis.com/customsearch/v1?"+
 				"key="+process.env.gkey+
 				"&cx=008242466204929014890:z4ee1niuwii"+	
-				"&start = "+ start +
-				"&num="+10+
+//				"&start = "+ start +
+//				"&num="+10+
 				"&q="+query;
 		//console.log(url);
 		var origUrl = req.get("host")+req.originalUrl;
